@@ -1,0 +1,71 @@
+<!--pages/blueTooth/blueTooth.wxml-->
+<view class="blueTooth">
+  <view>
+    <view wx:if="{{hours}}" class="devicesTime">当前时间:{{hours}}:{{minutes}}:{{seconds}}</view>
+  </view>
+  <mp-cells title="可用设备" wx:if="{{hasDevices}}">
+    <view wx:for="{{devices}}" wx:key="index">
+      <mp-cell link hover value="{{item.name}}" footer="{{item.RSSI}}" bindtap="goConnect" data-deviceid="{{item.deviceId}}">
+        <image slot="title" src="/image/device.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+    </view>
+  </mp-cells>
+  <button type="primary" bindtap="initBlue" class="searchBtn">开始搜索附近蓝牙</button>
+
+  <view>
+    <view class="litTitle">称谓设置</view>
+    <view class="appellation conpad">
+      <view class="section">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">
+            当前选择：{{array[index]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="litTitle">音量调节</view>
+    <view class="carts-num conpad">
+      <!--减按钮  -->
+      <lable class="minus" bindtap="btn_minus">-</lable>
+      <!-- 文本框值 -->
+      <label class="view_text_center" bindinput='input_num'>{{volume}}</label>
+      <!-- 加按钮-->
+      <lable class="plus" bindtap="btn_add">+</lable>
+    </view>
+  </view>
+  
+  <button type="warn" bindtap="getTime" class="searchBtn">重新获取时间</button>
+  <button type="default" bindtap="getAlarmClock" class="searchBtn">获取闹钟</button>
+  <button type="warn" bindtap="stopAlarmClock" class="searchBtn">停止闹钟</button>
+  <button type="warn" bindtap="sendInit" class="">发送指令</button>
+
+  <view class="section settime">
+    <!-- <view class="section__title">时间选择器</view> -->
+    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+      <view class="picker">
+        设置时间: {{time}}
+      </view>
+    </picker>
+  </view>
+  <view class="section settime">
+    <!-- <view class="section__title">时间选择器</view> -->
+    <picker mode="time" value="{{alarmtime}}" bindchange="bindAlarmChange">
+      <view class="picker">
+        设置闹钟: {{alarmtime}}
+      </view>
+    </picker>
+  </view>
+  <view class="alarm" wx:if="{{showAlarm}}">
+    <label class="alarm_title">我的闹钟</label>
+    <view class="alarm_content">
+      <view>时间：
+        <label>{{alarmHour}}:{{alarmMinute}}</label>
+      </view>
+      <view>
+        <switch checked="{{switch1Checked}}" bindchange="switch1Change" />
+      </view>
+    </view>
+  </view>
+  <!-- <button type="warn" bindtap="oncharChange" class="searchBtn">开始监听获取设备返回</button> -->
+  <view class="sleep" wx:if="{{showSleep}}"></view>
+</view>

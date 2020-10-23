@@ -1,0 +1,14 @@
+/* pages/LinkblueTooth/LinkblueTooth.wxss */
+.btnList{
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20rpx auto;
+}
+.section__title{
+  padding-left: 10rpx;
+}
+.setData{
+  margin-top: 20rpx;
+}

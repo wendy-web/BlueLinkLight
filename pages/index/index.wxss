@@ -1,0 +1,28 @@
+
+.userinfo{
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.userinfo image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin: 30rpx auto 5rpx;
+  display: block;
+}
+.blueTooth{
+  width: 60%;
+  margin: 50rpx auto;
+}
+.searchBlue{
+  width: 100%;
+  margin-top: 30rpx;
+}
+.searchBlue>view{
+  width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}

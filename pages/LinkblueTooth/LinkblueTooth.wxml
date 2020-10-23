@@ -1,0 +1,37 @@
+
+<!-- 蓝牙设备的列表 -->
+<button type="primary" bindtap="initBlue" class="searchBtn" wx:if="{{deviceId == ''}}">开始搜索附近蓝牙</button>
+<button type="primary" bindtap="breakBlue" class="searchBtn" wx:else>断开蓝牙连接</button>
+<mp-cells title="可用设备" wx:if="{{hasDevices}}">
+  <view wx:for="{{blueList}}" wx:key="index">
+    <mp-cell link hover value="{{item.name}}" footer="{{item.RSSI}}" bindtap="goConnect" data-deviceid="{{item.deviceId}}">
+      <image slot="title" src="/image/device.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </mp-cell> 
+  </view>
+</mp-cells>
+
+<!-- 滑动条 -->
+<view class="setData">
+  <view class="section section_gap">
+    <text class="section__title">当前的亮度</text>
+    <view class="body-view">
+      <slider bindchanging="changeLightValueHandle" bindchange='compleLightHadle' value="{{linghtValue}}" block-size='20' show-value block-color='#F2F2F2'/>
+        <!-- <slider bindchanging="changeLightValueHandle" value="{{linghtValue}}" block-size='20' show-value block-color='#F2F2F2' max='255'/> -->
+    </view>
+  </view> 
+  <view class="section section_gap">
+    <text class="section__title">当前的温度</text>
+    <view class="body-view">
+        <slider bindchanging="changeWarmValueHandle" bindchange="compleWarmHadle" value="{{warmValue}}" block-size='20' show-value block-color='#F2F2F2'/>
+    </view>
+  </view>
+  <view class="btnList">
+    <button class="mini-btn" type="primary" size="mini"  bindtap="openHandle">开灯</button>
+    <button class="mini-btn" type="warn" bindtap="shutHandle" size="mini">关灯</button>
+  </view>
+</view>
+
+<!-- <button class="mini-btn" type="warn" bindtap="lightHandle" size="mini">50%亮度灯</button>
+<button class="mini-btn" type="warn" bindtap="warmHandle" size="mini">50%温度灯</button>
+<button class="mini-btn" type="warn" bindtap="middleHandle" size="mini">50%-50%灯</button>
+<button class="mini-btn" type="warn" bindtap="setDataHandle" size="mini">data灯</button> -->
